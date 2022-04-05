@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main role="main">
+	<br><br><br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-4 align-items-center">
+			<div class="card" style="background-color: rgba(256,256,256,0.8)">
+				<div class="card-body">
+					<h3 class="card-title text-center">SIGN UP</h3>
+					<br>
+					<form method="post">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="email-field">Email address</label>
+							<input type="email" class="form-control" id="email-field" aria-describedby="emailHelp" name="email">
+							<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+							</div>
+						<div class="form-group">
+							<label for="password-field">Password</label>
+							<input type="password" class="form-control" id="password-field" name="password">
+						</div>
+						<div class="form-group">
+							<label for="password-field">Re-Enter Password</label>
+							<input type="password" class="form-control" id="password-field" name="reenter-password">
+						</div>
+						<div class="form-group form-check">
+							<input type="checkbox" class="form-check-input" id="keep-logged" name="checked-in">
+							<label class="form-check-label" for="keep-logged">Keep Logged In</label>
+						</div>
+						{% if error %}
+							<small class="text-danger">{{ error }}</small>
+						{% endif %}
+						<br>
+						<button type="submit" class="btn btn-primary btn-lg btn-block">Submit »</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>		
+</main>
+{% endblock %}

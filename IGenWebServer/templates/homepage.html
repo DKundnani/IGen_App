@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main role="main" class="align-items-center">
+
+		<div class="container">
+			<br><br><br><br><br><br><br><br>
+			<div class="row justify-content-md-center">
+				<h1 class="text-white display-3" style="font-weight: 500">Welcome to iGen!</h1>
+			</div>
+			<div class="row justify-content-md-center">
+				<h4 class="text-white">An Application to Predict your Susceptibility to Infectious Diseases</h4>
+			</div>
+			<br>
+			<div class="row justify-content-md-center">	
+				<p><a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login »</a></p>
+			</div>
+		
+		</div>
+		
+</main>
+{% endblock %}

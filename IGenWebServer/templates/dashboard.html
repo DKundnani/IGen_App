@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html style="height: 100%; padding: 0; margin: 0;">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<title>iGen</title>
+	<style type="text/css">
+		/* Set a background image by replacing the URL below */
+		body {
+		  background: url('{% static 'igen-home-4.jpg' %}') no-repeat center center fixed;
+		  -webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  background-size: cover;
+		  -o-background-size: cover;
+		}
+	</style>
+</head>
+<body style="height: 100%">
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(0,0,0,0.6)">
+		<a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'logo.png' %}" style="height: 45px; border-radius: 22px;"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="nav ml-auto">
+				<li class="nav-item active">
+					<a class="nav-link text-warning" href="{% url 'about' %}">ABOUT</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link text-warning" href="{% url 'howitworks' %}">HOW IT WORKS</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link text-warning" href="">RESOURCES</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link text-warning" href="#">DOCS</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link text-warning" href="{% url 'logout' %}">LOGOUT</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<main role="main" class="align-items-center">
+		<br><br>
+		<div class="row align-items-center">
+			<div class="col-md-1"></div>
+			<div class="col-md-4">
+				<div class="card" style="background-color: rgba(256,256,256,0.9)">
+					<div class="card-body">
+						<h3 class="card-title text-center">Upload DNA Data</h3>
+						<br>
+						<form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+							{% csrf_token %}
+							<div class="form-group">
+								<label for="service-select">Select DNA Service Provider</label>
+								<select class="form-control" id="service-select" name="source">
+									<option>--Select--</option>
+									<option>23andMe</option>
+									<option>Ancestry</option>
+									<option>Family Tree DNA</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="auth-select">Do you want iGen to retain your raw DNA data??</label>
+								<select class="form-control" id="auth-select" name="auth">
+									<option>--Select--</option>
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="file-field">Choose DNA File</label>
+								<input type="file" class="form-control-file" id="file-field" name="dna-file">
+							</div>
+							{% if error %}
+								<small class="text-danger">{{ error }}</small>
+							{% endif %}
+							<br>
+							<button type="submit" class="btn btn-primary">Submit »</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+			<div class="col-md-4">
+				<div class="container">
+					<div class="card row" style="background-color: rgba(256,256,256,0.9)">
+						<div class="card-body">
+							<h3 class="card-title text-center">Status</h3>
+							{% for score in prs %}
+								<h6>File: <small>{{ score.uuid }}</small></h6>
+								{% if score.job_status %}
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+									</div>
+								{% else %}
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25">25%</div>
+									</div>
+								{% endif %}
+							{% endfor %}
+							<br>
+							<a href="{% url 'status' %}" type="submit" class="btn btn-warning">Check Status »</a>
+						</div>
+					</div>
+					<br><br>
+					<div class="card row align-self-end" style="background-color: rgba(256,256,256,0.9)">
+						<div class="card-body">
+							<h3 class="card-title text-center">Results</h3>
+							<br>
+							{% for score in prs %}
+								<h6>File: <small>{{ score.uuid }}</small></h6>
+								<h6>Status: {{ score.job_status }}</h6>
+							{% endfor %}
+							<a href="{% url 'results' %}" type="submit" class="btn btn-success">Check Results »</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>		
+		<br><br><br>
+	</main>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	{% block javascript %}
+    {% endblock %}
+</body>
+</html>

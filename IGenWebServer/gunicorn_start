@@ -1,0 +1,28 @@
+#!/bin/bash
+
+NAME="igen"
+DIR=/projects/team-2/html/biol-8803-IGen/IGenWebServer
+USER=ssharma454
+WORKERS=1
+BIND=unix:/projects/team-2/html/biol-8803-IGen/IGenWebServer/run/gunicorn.sock
+DJANGO_SETTINGS_MODULE=IGenWebServer.settings
+DJANGO_WSGI_MODULE=IGenWebServer.wsgi
+LOG_LEVEL=error
+
+cd $DIR
+source /projects/team-2/html/miniconda3/bin/activate 
+conda activate biol-8803
+
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DIR:$PYTHONPATH
+
+exec /projects/team-2/html/miniconda3/envs/biol-8803/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $WORKERS \
+  --user=$USER \
+  --bind=$BIND \
+  --log-level=$LOG_LEVEL \
+  --log-file=-
+
+#Running chmod 777 on socket file.
+chmod 777 /projects/team-2/html/biol-8803-IGen/IGenWebServer/run/gunicorn.sock

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<style type="text/css">
+	/* Set a background image by replacing the URL below */
+	body {
+	  background: url('{% static 'texture-2.jpg' %}') no-repeat center center fixed;
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  background-size: cover;
+	  -o-background-size: cover;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<main role="main" class="align-items-center">
+	<br><br><br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-10">
+			<div class="card" style="background-color: rgba(256,256,256,0.9)">
+				<div class="card-body">
+					<h1 class="card-title text-center">Remember!</h1>
+				</div>
+				<div class="row justify-content-md-center">
+					<div class="col-md-10 text-center"> 
+						<br>
+						<h4 class="text-info"><i>There are multiple factors that affect your disease susceptibility that are not captured in your risk score.</i>
+						</h4>
+					</div>	
+				</div>
+				<br>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-10">
+			<div class="card" style="background-color: rgba(256,256,256,0.9)">
+				<div class="card-body">
+					<h1 class="card-title text-center">Important!</h1>
+				</div>
+				<div class="row justify-content-md-center">
+					<div class="col-md-10 text-center"> 
+						<br>
+						<h5>1. <b>Genetic factors:</b> Our genes are a large part of who we are, but they are not everything. Genes expression varies, and this will influence how a trait appears.</h5>
+						<br>
+						<h5>2. <b>Environmental factors:</b> Genetics is not your destiny. The environment is also influential in your susceptibility to diseases. Nutrition, exercise, lifestyle choices, and much more effect our health. </h5> 
+						<br>
+						<h5>3. <b>Study Reliability:</b> Some studies are more reliable and well-established than others. iGen chooses our studies based on many factors that affect reliability, and we always cite our sources when you receive your results. Check out the studies yourself to dive deeper into your results! </h5>
+						<br>
+						</h4>
+					</div>	
+				</div>
+				<br>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-10">
+			<div class="card" style="background-color: rgba(256,256,256,0.9)">
+				<div class="card-body">
+					<h1 class="card-title text-center">Helpful Links</h1>
+				</div>
+				<div class="row justify-content-md-center">
+					<div class="col-md-10 text-center"> 
+						<br>
+						<h5>1. Certain diseases are more prevalent in some countries. Look at the Centers for Disease Control and Prevention’s recommendations for traveling and consult with your doctor if you are concerned about traveling out of the country.</h5>
+						<br>
+						<h5>2. Travel notices: https://wwwnc.cdc.gov/travel/notices/  https://wwwnc.cdc.gov/travel/page/travel-information-centers</h5> 
+						<br>
+						<h5>3. Some diseases can be prevented with vaccinations. Check out this link to see what vaccines are recommended by the Centers for Disease Control and Prevention. Consult with your doctor before making any medical decisions. https://www.cdc.gov/vaccines/pubs/pinkbook/chapters.html 
+						</h5>
+						<br>
+					</div>	
+				</div>
+				<br>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+</main>
+{% endblock %}

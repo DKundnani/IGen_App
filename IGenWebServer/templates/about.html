@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<style type="text/css">
+	/* Set a background image by replacing the URL below */
+	body {
+	  background: url('{% static 'texture-2.jpg' %}') no-repeat center center fixed;
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  background-size: cover;
+	  -o-background-size: cover;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<main role="main" class="align-items-center">
+	<br><br><br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-10">
+			<div class="card" style="background-color: rgba(256,256,256,0.9)">
+				<div class="card-body">
+					<h1 class="card-title text-center">ABOUT US</h1>
+				</div>
+				<div class="row align-items-center">
+					<div class="col-md-12 text-center"> 
+						<img src="{% static 'logo.png' %}" style="height: 300px; border-radius: 75px;">
+					</div>
+					<div class="col-md-12 text-center"> 
+						<br>
+						<h4>We are iGen, an infectious disease genetics application focused on helping you understand your susceptibility to diseases such as HIV, Hepatitis C, tuberculosis, and more!
+						</h4>
+					</div>	
+				</div>
+				<br>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-10">
+			<div class="card" style="background-color: rgba(256,256,256,0.9)">
+				<div class="card-body">
+					<h1 class="card-title text-center">OUR MISSION</h1>
+				</div>
+				<div class="row align-items-center">
+					<div class="col-md-12 text-center"> 
+						<br>
+						<h4>The advancement of genomics science and your DNA discoveries never ends. Our science team curates thousands of research studies to bring you the newest insights from the frontier of genomics research.
+						</h4>
+					</div>	
+				</div>
+				<br>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-10">
+			<div class="card" style="background-color: rgba(256,256,256,0.9)">
+				<div class="card-body">
+					<h1 class="card-title text-center">MEET THE TEAM</h1>
+				</div>
+				<div class="row align-items-center">
+					<div class="col-md-4 text-center"> 
+						<img src="{% static 'deepali.jpg' %}" style="height: 200px; border-radius: 75px;">
+						<br>
+						<h5 class="text-center">Deepali Kundnani</h5>
+						<br>
+					</div>
+					<div class="col-md-4 text-center"> 
+						<img src="{% static 'sara.jpg' %}" style="height: 200px; border-radius: 75px;">
+						<br>
+						<h5 class="text-center">Sara Cleland</h5>
+						<br>
+					</div>	
+					<div class="col-md-4 text-center"> 
+						<img src="{% static 'shivam.jpg' %}" style="height: 200px; border-radius: 75px;">
+						<br>
+						<h5 class="text-center">Shivam Sharma</h5>
+						<br>
+					</div>	
+				</div>
+				<div class="row align-items-center">
+					<div class="col-md-4 text-center"> 
+						<h6 class="text-center"><i>Deepali is a second year Ph.D. student at Georgia Institute of Technology who has prior experience in finding biomarkers in Cancer diseases. Her Goal is to transform biological basis of health and disease to interventions that improve the health of Individuals and the public. </i>
+</h6>
+					</div>
+					<div class="col-md-4 text-center"> 
+						<h6 class="text-center"><i>Sara Cleland is a Master’s bioinformatics student at Georgia Institute of Technology. Her research focuses on analyzing the population structure of Elizabethkinga anophelis, a bacterial pathogen that infects the immunocompromised. She is passionate about bringing her love of science to everyone through applications such as iGen.</i></h6>
+					</div>	
+					<div class="col-md-4 text-center"> 
+						<h6 class="text-center"><i>Shivam is about to complete an MS Bioinformatics degree from Georgia Institute of Technology. He works in a Cancer Biology lab where he is analyzing the effects of aberrant alternative splicing on miRNAs in cancer. When not developing a bioinformatics pipeline, he is usually watching a documentry on almost anything.</i></h6>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+</main>
+{% endblock %}

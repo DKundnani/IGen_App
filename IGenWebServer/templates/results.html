@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html style="height: 100%; padding: 0; margin: 0;">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="http://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+	<title>iGen | Results</title>
+	<style type="text/css">
+		/* Set a background image by replacing the URL below */
+		body {
+		  background: url('{% static 'igen-home-4.jpg' %}') no-repeat center center fixed;
+		  -webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  background-size: cover;
+		  -o-background-size: cover;
+		}
+	</style>
+</head>
+
+<body style="height: 100%">
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(0,0,0,0.6)">
+		<a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'logo.png' %}" style="height: 45px; border-radius: 22px;"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="nav ml-auto">
+				<li class="nav-item active">
+					<a class="nav-link text-warning" href="{% url 'dashboard' %}">DASHBOARD</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link text-warning" href="{% url 'home' %}">ABOUT</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link text-warning" href="">RESOURCES</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link text-warning" href="{% url 'logout' %}">LOGOUT</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<main role="main" class="align-items-center">
+		<br><br>
+		<div class="row align-items-center">		
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div class="card row" style="background-color: rgba(256,256,256,0.9)">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-3"><h5 class="text-left"><b>Disease Name</b></h5></div>
+								<div class="col-md-3"><h5 class="text-left"><b>Study Population</b></h5></div>
+								<div class="col-md-2"><h5 class="text-left"><b>Link</b></h5></div>		
+								<div class="col-md-3"><h5 class="text-right"><b>Percentile Score</b></h5></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-1"></div>
+			</div>	
+			<br>
+		{% for disease, score in prs.scores.items %}
+			<div class="row align-items-center">		
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div class="card row" style="background-color: rgba(256,256,256,0.9)">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-3"><h5>{{ disease }}</h5></div>
+								<div class="col-md-2">European</div>	
+								<div class="col-md-3">
+									<p><a href="https://www.nature.com/articles/s41467-017-00257-5">Reference Journal</a></p>
+									<p><a href="https://www.cdc.gov/"> CDC Link</a></p>
+								</div>	
+								<div class="col-md-3">
+									<canvas id="{{ disease }}"></canvas>
+									<h6 class="text-center">Your Risk Score: <b>{{score}}</b></h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-1"></div>
+			</div>	
+			<br>
+		{% endfor %}
+	</main>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="{% static 'gauge.js' %}"></script>
+	{% block javascript %}
+    {% endblock %}
+    	{% for disease, score in prs.scores.items %}
+			<script type="text/javascript">
+				var target = document.getElementById('{{ disease }}'); // your canvas element
+				var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+				gauge.maxValue = 100; // set max gauge value
+				gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+				gauge.animationSpeed = 32; // set animation speed (32 is default value)
+				gauge.set( '{{ score }}' ); // set actual value		
+			</script>
+		{% endfor %}
+</body>
+</html>
